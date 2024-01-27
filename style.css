@@ -303,6 +303,15 @@ transition: all 0.5s ease-in-out;
         }
     }
 
+@media screen and (min-width: 769px) {
+        .payment {
+            width: 500px;
+            padding: 10px 50px;
+        }
+    }
+
+
+
     .payTitle{
         font-size: 20px;
         color: black;
