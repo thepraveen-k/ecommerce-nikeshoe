@@ -293,6 +293,14 @@ nav{
         flex-direction: column;
         -webkit-box-shadow: 0px 0px 27px -3px rgba(0,0,0,0.87); 
 box-shadow: 0px 0px 27px -3px rgba(0,0,0,0.87);
+transition: all 0.5s ease-in-out;
+    }
+
+    @media screen and (max-width: 768px) {
+        .payment {
+            width: 100%;
+            padding: 10px;
+        }
     }
 
     .payTitle{
@@ -436,5 +444,3 @@ width: 30%;
 .galleryImg{
     width: 100%;
 }
-
-
