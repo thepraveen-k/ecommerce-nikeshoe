@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const wrapper = document.querySelector(".sliderWrapper");
     const menuItems = document.querySelectorAll(".menuItem");
-
-
     const products = [
+        
         {
             id: 1,
             title: "Air Force",
@@ -79,64 +78,114 @@ document.addEventListener("DOMContentLoaded", function () {
                 },
             ],
         },
+
+
     ];
-    
 
 
+    let chosenProduct = products[0];
+        let currentIndex = 0;
 
-let choosenProduct = products[0];
-
-    const currentProductImg = document.querySelector(".productImg");
-    const currentProductTitle = document.querySelector(".productTitle");
-    const currentProductPrice = document.querySelector(".productPrice");
-    const currentProductColors = document.querySelectorAll(".color");
-    const currentProductSizes = document.querySelectorAll(".size");
-
-    menuItems.forEach((item, index) => {
-        item.addEventListener("click", () => {
+        const updateSlider = () => {
             const itemWidth = document.querySelector(".sliderItem").offsetWidth;
-            wrapper.style.transform = `translateX(${-index * itemWidth}px)`;
+            wrapper.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
+        };
 
-            choosenProduct = products[index];
+        menuItems.forEach((item, index) => {
+            item.addEventListener("click", () => {
+                currentIndex = index;
+                chosenProduct = products[index];
+                updateSlider();
+                updateProductDetails();
+            });
+        });
 
-            currentProductTitle.textContent = choosenProduct.title;
-            currentProductPrice.textContent = "₹" + choosenProduct.price;
-            currentProductImg.src = choosenProduct.colors[0].img;
+        const updateProductDetails = () => {
+            const currentProductImg = document.querySelector(".productImg");
+            const currentProductTitle = document.querySelector(".productTitle");
+            const currentProductPrice = document.querySelector(".productPrice");
 
+            currentProductTitle.textContent = chosenProduct.title;
+            currentProductPrice.textContent = "₹" + chosenProduct.price;
+            currentProductImg.src = chosenProduct.colors[0].img;
+
+            const currentProductColors = document.querySelectorAll(".color");
             currentProductColors.forEach((color, index) => {
-                color.style.backgroundColor = choosenProduct.colors[index].code;
+                color.style.backgroundColor = chosenProduct.colors[index].code;
+            });
+        };
+
+        const currentProductColors = document.querySelectorAll(".color");
+        currentProductColors.forEach((color, index) => {
+            color.addEventListener("click", () => {
+                const currentProductImg = document.querySelector(".productImg");
+                currentProductImg.src = chosenProduct.colors[index].img;
             });
         });
-    });
 
-    currentProductColors.forEach((color, index) => {
-        color.addEventListener("click", () => {
-            currentProductImg.src = choosenProduct.colors[index].img;
-        });
-    });
-
-    currentProductSizes.forEach((size, index) => {
-        size.addEventListener("click", () => {
-            currentProductSizes.forEach((s) => {
-                s.style.backgroundColor = "white";
-                s.style.color = "black";
+        const currentProductSizes = document.querySelectorAll(".size");
+        currentProductSizes.forEach((size, index) => {
+            size.addEventListener("click", () => {
+                currentProductSizes.forEach((s) => {
+                    s.style.backgroundColor = "white";
+                    s.style.color = "black";
+                });
+                size.style.backgroundColor = "black";
+                size.style.color = "white";
             });
-            size.style.backgroundColor = "black";
-            size.style.color = "white";
         });
+
+        // Add next and previous functionality
+        const nextButton = document.querySelector(".nextButton");
+        const prevButton = document.querySelector(".prevButton");
+
+        nextButton.addEventListener("click", () => {
+            if (currentIndex < products.length - 1) {
+                currentIndex++;
+                chosenProduct = products[currentIndex];
+                updateSlider();
+                updateProductDetails();
+            }
+        });
+
+        prevButton.addEventListener("click", () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                chosenProduct = products[currentIndex];
+                updateSlider();
+                updateProductDetails();
+            }
+        });
+
+        // Ensure the slider is updated on initial load
+        updateSlider();
+        updateProductDetails();
     });
-});
 
+    // Add code to make the payment section responsive
+    window.addEventListener("resize", function () {
+        const payment = document.querySelector(".payment");
 
-const productButton = document.querySelector(".productButton");
-const payment = document.querySelector(".payment");
-const close = document.querySelector(".close"); 
+        if (window.innerWidth <= 768) {
+            // Set styles for mobile view
+            payment.style.width = "100%";
+            payment.style.padding = "10px";
+        } else {
+            // Reset styles for larger screens
+            payment.style.width = "500px";
+            payment.style.padding = "10px 50px";
+        }
+    });
 
+    const productButton = document.querySelector(".productButton");
+    const payment = document.querySelector(".payment");
+    const close = document.querySelector(".close");
 
-productButton.addEventListener("click", () => {
-    payment.style.display = "flex"
-})
+    productButton.addEventListener("click", () => {
+        payment.style.display = "flex";
+    });
 
-close.addEventListener("click", () => {
-    payment.style.display = "none"
-})
+    close.addEventListener("click", () => {
+        payment.style.display = "none";
+    });
+
