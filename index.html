@@ -215,7 +215,93 @@
 
 
 
-<script src="app.js"></script>
+<script src="app.js">
+
+document.addEventListener("DOMContentLoaded", function () {
+            const wrapper = document.querySelector(".sliderWrapper");
+            const menuItems = document.querySelectorAll(".menuItem");
+
+            const products = [
+                // Your product data here...
+            ];
+
+            let chosenProduct = products[0];
+            let currentIndex = 0;
+
+            const updateSlider = () => {
+                const itemWidth = document.querySelector(".sliderItem").offsetWidth;
+                wrapper.style.transform = `translateX(${-currentIndex * itemWidth}px)`;
+            };
+
+            menuItems.forEach((item, index) => {
+                item.addEventListener("click", () => {
+                    currentIndex = index;
+                    chosenProduct = products[index];
+                    updateSlider();
+                    updateProductDetails();
+                });
+            });
+
+            const updateProductDetails = () => {
+                const currentProductImg = document.querySelector(".productImg");
+                const currentProductTitle = document.querySelector(".productTitle");
+                const currentProductPrice = document.querySelector(".productPrice");
+
+                currentProductTitle.textContent = chosenProduct.title;
+                currentProductPrice.textContent = "₹" + chosenProduct.price;
+                currentProductImg.src = chosenProduct.colors[0].img;
+
+                const currentProductColors = document.querySelectorAll(".color");
+                currentProductColors.forEach((color, index) => {
+                    color.style.backgroundColor = chosenProduct.colors[index].code;
+                });
+            };
+
+            const currentProductColors = document.querySelectorAll(".color");
+            currentProductColors.forEach((color, index) => {
+                color.addEventListener("click", () => {
+                    const currentProductImg = document.querySelector(".productImg");
+                    currentProductImg.src = chosenProduct.colors[index].img;
+                });
+            });
+
+            const currentProductSizes = document.querySelectorAll(".size");
+            currentProductSizes.forEach((size, index) => {
+                size.addEventListener("click", () => {
+                    currentProductSizes.forEach((s) => {
+                        s.style.backgroundColor = "white";
+                        s.style.color = "black";
+                    });
+                    size.style.backgroundColor = "black";
+                    size.style.color = "white";
+                });
+            });
+
+            // Add next and previous functionality
+            const nextButton = document.querySelector(".nextButton");
+            const prevButton = document.querySelector(".prevButton");
+
+            nextButton.addEventListener("click", () => {
+                if (currentIndex < products.length - 1) {
+                    currentIndex++;
+                    chosenProduct = products[currentIndex];
+                    updateSlider();
+                    updateProductDetails();
+                }
+            });
+
+            prevButton.addEventListener("click", () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    chosenProduct = products[currentIndex];
+                    updateSlider();
+                    updateProductDetails();
+                }
+            });
+        });
+
+    
+</script>
 
 
     
