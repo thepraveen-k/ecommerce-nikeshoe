@@ -1,4 +1,4 @@
-## E-commerce Website Project - Nike Shoe Store
+## E-commerce Website Project - Nike Shoe Store https://thepraveen-k.github.io/ecommerce-nikeshoe/
 
 This project aims to develop a responsive e-commerce website focusing on the renowned Nike shoe brand. The main objective is to create a user-friendly platform accessible across various devices including mobile, tablet, desktop, and others.The main motive for this project is to create a responsive design for mobile, tablet, desktop, and other devices.
 
@@ -18,4 +18,4 @@ This project aims to develop a responsive e-commerce website focusing on the ren
 - CSS clip-path maker from Bennett Feely's website (https://bennettfeely.com/clippy/)
 
 ## Deployment:
-The website is deployed and accessible through [insert deployment link here].
+The website is deployed and accessible through [https://thepraveen-k.github.io/ecommerce-nikeshoe/].
