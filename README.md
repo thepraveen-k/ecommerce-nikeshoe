@@ -16,7 +16,6 @@ This project aims to develop a responsive e-commerce website focusing on the ren
 ## Third-party Tools:
 - Images : https://www.pexels.com/search/nike%20shoes/
 - CSS clip-path maker from Bennett Feely's website (https://bennettfeely.com/clippy/)
-- For Polygon Design 
 
 ## Deployment:
 The website is deployed and accessible through [insert deployment link here].
