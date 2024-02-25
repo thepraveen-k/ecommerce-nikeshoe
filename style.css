@@ -530,10 +530,10 @@ footer{
 
 @media screen and (max-width:480px ) {
 
-     *{
+    *{
        overflow-y: auto;
     }
-    
+   
     body {
         margin: 0;
         overflow-x: hidden;
@@ -640,6 +640,7 @@ footer{
 .footerLeft{
     padding: 50px ;
     width: 90%;
+  
 }
 
 .footerRight{
@@ -647,6 +648,7 @@ footer{
     width: 90%;
     align-items: center;
     background-color: whitesmoke ;
+
 }
 
 .payment{
